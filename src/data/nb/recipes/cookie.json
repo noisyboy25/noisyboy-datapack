@@ -1,0 +1,7 @@
+{
+    "type": "blasting",
+    "ingredient": {
+        "item": "minecraft:diamond"
+    },
+    "result": "minecraft:creeper_spawn_egg"
+}

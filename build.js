@@ -2,24 +2,39 @@ const fs = require('fs');
 const archiver = require('archiver');
 const path = require('path');
 
-const defaultDir = 'dist';
+const testPath = path.join(__dirname, 'minecraft/saves/test/datapacks');
+
 const fileName = 'noisyboy_datapack.zip';
-const outDir = process.argv[2] || defaultDir;
-const out = path.join(__dirname, outDir, fileName);
 
-console.log(out);
+const main = () => {
+    if (process.argv[2] === 'test') {
+        buildZip(testPath, fileName);
+    } else {
+        fs.mkdir(path.join(__dirname, 'dist'), (err) => {
+            if (err && err.code !== 'EEXIST') {
+                console.log(err);
+                return;
+            }
 
-fs.mkdir(path.join(__dirname, outDir), (err) => {
-    if (err && err.code !== 'EEXIST') console.log(err);
-    else {
-        const stream = fs.createWriteStream(out);
-        const archive = archiver('zip');
-        archive
-            .directory('src', false)
-            .on('error', (err) => console.log(err))
-            .on('finish', () => console.log('Building finished'))
-            .pipe(stream);
-        archive.finalize();
+            buildZip(path.join(__dirname, 'dist'), fileName);
+        });
     }
-});
+}
 
+const buildZip = (_outDir, _fileName) => {
+    console.log(`${_outDir}/${fileName}`);
+    const stream = fs.createWriteStream(path.join(_outDir, _fileName));
+    stream.on('error', (err) => {
+        console.log(err);
+        return;
+    });
+    const archive = archiver('zip');
+    archive
+        .directory('src', false)
+        .on('error', (err) => console.log(err))
+        .on('finish', () => console.log('Build finished'))
+        .pipe(stream);
+    archive.finalize();
+}
+
+main();

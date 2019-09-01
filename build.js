@@ -10,10 +10,17 @@ const main = () => {
     console.log(`Build: ${args.toString()}`);
 
     if (args.includes('test')) {
-        buildResPack(testDir, 'resources.zip');
-        buildDataPack(path.join(testDir, 'datapacks'));
+        fs.mkdir(path.join(__dirname, 'minecraft'), (err) => {
+            if (err && err.code !== 'EEXIST') {
+                console.log(err);
+                return;
+            }
+
+            buildResPack(testDir, 'resources.zip');
+            buildDataPack(path.join(testDir, 'datapacks'));
+        });
     }
-    
+
     if (args.includes('datapack')) {
         fs.mkdir(path.join(__dirname, 'dist'), (err) => {
             if (err && err.code !== 'EEXIST') {
@@ -52,7 +59,7 @@ const buildResPack = (outDir, fileName = 'noisyboy_resources.zip') => {
 const buildZip = (srcDir, outDir, fileName) => {
     console.log(path.join(outDir, fileName));
 
-    const stream = fs.createWriteStream(path.join(outDir, fileName)); // PATH
+    const stream = fs.createWriteStream(path.join(outDir, fileName));
     stream.on('error', (err) => {
         console.log(err);
         return;

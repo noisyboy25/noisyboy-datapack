@@ -2,35 +2,65 @@ const fs = require('fs');
 const archiver = require('archiver');
 const path = require('path');
 
-const testPath = path.join(__dirname, 'minecraft/saves/test/datapacks');
-
-const fileName = 'noisyboy_datapack.zip';
+const distDir = path.join(__dirname, 'dist');
+const testDir = path.join(__dirname, 'minecraft/saves/test/');
 
 const main = () => {
-    if (process.argv[2] === 'test') {
-        buildZip(testPath, fileName);
-    } else {
+    const args = process.argv.slice(2);
+    console.log(`Build: ${args.toString()}`);
+
+    if (args.includes('test')) {
+        buildResPack(testDir, 'resources.zip');
+        buildDataPack(path.join(testDir, 'datapacks'));
+    }
+    
+    if (args.includes('datapack')) {
         fs.mkdir(path.join(__dirname, 'dist'), (err) => {
             if (err && err.code !== 'EEXIST') {
                 console.log(err);
                 return;
             }
 
-            buildZip(path.join(__dirname, 'dist'), fileName);
+            buildDataPack(distDir);
+        });
+    }
+
+    if (args.includes('resources')) {
+        fs.mkdir(path.join(__dirname, 'dist'), (err) => {
+            if (err && err.code !== 'EEXIST') {
+                console.log(err);
+                return;
+            }
+
+            buildResPack(distDir);
         });
     }
 }
 
-const buildZip = (_outDir, _fileName) => {
-    console.log(`${_outDir}/${fileName}`);
-    const stream = fs.createWriteStream(path.join(_outDir, _fileName));
+const buildDataPack = (outDir, fileName = 'noisyboy_datapack.zip') => {
+    const srcDir = path.join(__dirname, 'src/datapack');
+
+    buildZip(srcDir, outDir, fileName);
+}
+
+const buildResPack = (outDir, fileName = 'noisyboy_resources.zip') => {
+    const srcDir = path.join(__dirname, 'src/resources');
+
+    buildZip(srcDir, outDir, fileName);
+}
+
+const buildZip = (srcDir, outDir, fileName) => {
+    console.log(path.join(outDir, fileName));
+
+    const stream = fs.createWriteStream(path.join(outDir, fileName)); // PATH
     stream.on('error', (err) => {
         console.log(err);
         return;
     });
+
     const archive = archiver('zip');
     archive
-        .directory('src', false)
+        .directory(path.join(srcDir), false)
         .on('error', (err) => console.log(err))
         .on('finish', () => console.log('Build finished'))
         .pipe(stream);

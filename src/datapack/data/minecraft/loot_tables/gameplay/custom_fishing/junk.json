@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "minecraft:bone",
+          "functions": [
+            {
+              "function": "set_name",
+              "name": "Fish Skeleton"
+            },
+            {
+              "function": "set_nbt",
+              "tag": "{CustomModelData: 1}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

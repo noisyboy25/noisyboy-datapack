@@ -1,0 +1,145 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 60,
+          "name": "minecraft:tropical_fish",
+          "functions": [
+            {
+              "function": "set_name",
+              "name": "Angler Fish"
+            },
+            {
+              "function": "set_nbt",
+              "tag": "{CustomModelData: 1}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 60,
+          "name": "minecraft:tropical_fish",
+          "functions": [
+            {
+              "function": "set_name",
+              "name": "Manta Ray"
+            },
+            {
+              "function": "set_nbt",
+              "tag": "{CustomModelData: 2}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 60,
+          "name": "minecraft:tropical_fish",
+          "functions": [
+            {
+              "function": "set_name",
+              "name": "Moray Eel"
+            },
+            {
+              "function": "set_nbt",
+              "tag": "{CustomModelData: 3}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 60,
+          "name": "minecraft:tropical_fish",
+          "functions": [
+            {
+              "function": "set_name",
+              "name": "Ocean Sunfish"
+            },
+            {
+              "function": "set_nbt",
+              "tag": "{CustomModelData: 4}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 60,
+          "name": "minecraft:tropical_fish",
+          "functions": [
+            {
+              "function": "set_name",
+              "name": "Stingray"
+            },
+            {
+              "function": "set_nbt",
+              "tag": "{CustomModelData: 5}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 60,
+          "name": "minecraft:tropical_fish",
+          "functions": [
+            {
+              "function": "set_name",
+              "name": "Coelacanth"
+            },
+            {
+              "function": "set_nbt",
+              "tag": "{CustomModelData: 6}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 60,
+          "name": "minecraft:pufferfish",
+          "functions": [
+            {
+              "function": "set_name",
+              "name": "Blood Lamprey"
+            },
+            {
+              "function": "set_nbt",
+              "tag": "{CustomModelData: 1}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 60,
+          "name": "minecraft:pufferfish",
+          "functions": [
+            {
+              "function": "set_name",
+              "name": "Moon Jellyfish"
+            },
+            {
+              "function": "set_nbt",
+              "tag": "{CustomModelData: 2}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 60,
+          "name": "minecraft:pufferfish",
+          "functions": [
+            {
+              "function": "set_name",
+              "name": "Lion's Mane Jellyfish"
+            },
+            {
+              "function": "set_nbt",
+              "tag": "{CustomModelData: 3}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
